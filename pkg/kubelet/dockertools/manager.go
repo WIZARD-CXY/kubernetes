@@ -1623,7 +1623,7 @@ func (dm *DockerManager) createPodInfraContainer(pod *api.Pod) (kubeletTypes.Doc
 	netNamespace := ""
 	var ports []api.ContainerPort
 
-	if dm.networkPlugin.Name() == "cni" {
+	if dm.networkPlugin.Name() == "cni" || dm.networkPlugin.Name() == "cxy/cxy_sdn" {
 		netNamespace = "none"
 	}
 
