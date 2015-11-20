@@ -1636,7 +1636,8 @@ func (dm *DockerManager) createPodInfraContainer(pod *api.Pod) (kubecontainer.Do
 	netNamespace := ""
 	var ports []api.ContainerPort
 
-	if dm.networkPlugin.Name() == "cni" {
+	if dm.networkPlugin.Name() == "cni" || dm.networkPlugin.Name() == "cxy/cxy_sdn" {
+		glog.V(2).Infof("network plugin %s", dm.networkPlugin.Name())
 		netNamespace = "none"
 	}
 
